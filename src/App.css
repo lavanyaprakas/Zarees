@@ -1,0 +1,23 @@
+.navBarTop{
+   /* margin-top:15px; */
+   margin-left:25px;
+   margin-right:25px;
+   background-color: white;
+}   
+.App
+{
+    background-color: lightskyblue;
+}
+.Menu
+{
+    margin-top: 50;
+    margin-left:25px;
+   margin-right:25px;
+   background-color: white;
+}
+.Home{
+    border-radius: 20px;
+    /* margin-top:25px; */
+    margin-left:25px;
+    margin-right:25px;
+}

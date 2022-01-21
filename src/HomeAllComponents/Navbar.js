@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import logo from '../Images/Zareeslogo.jpeg';
 import '../App.css';
@@ -6,10 +6,28 @@ import { Input, Space } from 'antd';
 import { AudioOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Button, Radio } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import  axios  from 'axios';
 
 
 
 function Navbar(props) {
+const[menuItem,setMenuItem] =useState([]);
+    useEffect (()=>{
+        const menu=async()=>{
+            let menulist=await axios.get("https://rcz-backend-arvinth.herokuapp.com/api/shopData");
+            // console.log(await menulist.data);
+            setMenuItem(await menulist.data);
+            let rowList=[];
+            let rowListWithDuplicate=await menulist.data.map(e=>{if(!rowList.includes(e.classification)){
+               return rowList.push(e.classification)
+            }
+        });
+        }
+        menu();
+
+    },[])
     const { Search } = Input;
     const suffix = (
         <AudioOutlined
@@ -23,10 +41,14 @@ function Navbar(props) {
     const onSearch = value => console.log(value);
     return (
 
-        <div className="navBar">
+        <div>
+            <div className="navBarTop">
+
+            <Row>
+            </Row>
             <Row >
-                <Col lg={2}>
-                    <img src={logo} style={{ width: 150 }} />
+                <Col lg={3}>
+                    <img src={logo} style={{ width: 150}} />
                 </Col>
 
                 <Col lg={6} style={{marginTop:20}}>
@@ -38,18 +60,23 @@ function Navbar(props) {
                     </Space>
                 </Col>
 
-                <Col lg={1} style={{marginTop:20}}>
+                <Col lg={1} style={{marginTop:20,fontFamily:"sans-serif",fontSize:"large"}}>
                     <ShoppingCartOutlined />Cart
                 </Col>
 
-                <Col lg={1} style={{marginTop:20}}>
+                <Col lg={1} style={{marginTop:20,fontFamily:"sans-serif",fontSize:"large"}}>
                     <Button type="primary" size={'large'}>
                         Login
                     </Button>
                 </Col>
 
             </Row>
+            <Row style ={{marginTop:50}}>
+                
+            </Row>
+            </div>
 
+            
         </div>
 
     );

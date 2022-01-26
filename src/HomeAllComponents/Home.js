@@ -5,6 +5,7 @@ import Classification from './Classification';
 import Navbar from './Navbar';
 
 
+
 function Home(props) {
 return(
 
@@ -13,6 +14,7 @@ return(
         <Navbar/>
         <Banner/>
         <Classification/>
+        
             
 
 

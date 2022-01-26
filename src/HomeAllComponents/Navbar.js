@@ -13,21 +13,7 @@ import  axios  from 'axios';
 
 
 function Navbar(props) {
-const[menuItem,setMenuItem] =useState([]);
-    useEffect (()=>{
-        const menu=async()=>{
-            let menulist=await axios.get("https://rcz-backend-arvinth.herokuapp.com/api/shopData");
-            // console.log(await menulist.data);
-            setMenuItem(await menulist.data);
-            let rowList=[];
-            let rowListWithDuplicate=await menulist.data.map(e=>{if(!rowList.includes(e.classification)){
-               return rowList.push(e.classification)
-            }
-        });
-        }
-        menu();
 
-    },[])
     const { Search } = Input;
     const suffix = (
         <AudioOutlined
